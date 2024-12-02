@@ -37,8 +37,7 @@ fn solve_2(input: Vec<String>) {
                 .map(|(filter_idx, nums)| {
                     nums.into_iter()
                         .enumerate()
-                        .filter(|(i, _)| *i != filter_idx)
-                        .map(|(_, v)| v)
+                        .filter_map(|(i, x)| if i != filter_idx { Some(x) } else { None })
                         .collect()
                 })
                 .map(|nums: Vec<_>| {
