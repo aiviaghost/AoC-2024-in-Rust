@@ -3,13 +3,12 @@ use std::{fs, iter::repeat};
 fn solve_1(input: Vec<String>) {
     let ans: i32 = input
         .iter()
-        .flat_map(|line| {
-            let data: Vec<_> = line
-                .split_whitespace()
+        .map(|line| {
+            line.split_whitespace()
                 .map(|s| s.parse::<i32>().unwrap())
-                .collect();
-            [data.clone(), data.into_iter().rev().collect()]
+                .collect::<Vec<_>>()
         })
+        .flat_map(|nums| [nums.clone(), nums.into_iter().rev().collect()])
         .map(|nums| {
             nums.iter()
                 .zip(nums.iter().skip(1))
@@ -29,18 +28,18 @@ fn solve_2(input: Vec<String>) {
                 .map(|s| s.parse::<i32>().unwrap())
                 .collect::<Vec<_>>()
         })
-        .flat_map(|data| [data.clone(), data.into_iter().rev().collect()])
-        .map(|data| {
-            repeat(data.clone())
-                .take(data.len())
+        .flat_map(|nums| [nums.clone(), nums.into_iter().rev().collect()])
+        .map(|nums| {
+            repeat(nums.clone())
+                .take(nums.len())
                 .enumerate()
                 .map(|(filter_idx, nums)| {
                     nums.into_iter()
                         .enumerate()
                         .filter_map(|(i, x)| if i != filter_idx { Some(x) } else { None })
-                        .collect()
+                        .collect::<Vec<_>>()
                 })
-                .map(|nums: Vec<_>| {
+                .map(|nums| {
                     nums.iter()
                         .zip(nums.iter().skip(1))
                         .map(|(i, j)| i < j && (i - j).abs() <= 3)
