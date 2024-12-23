@@ -17,7 +17,7 @@ fn solve_1(input: Vec<String>) {}
 fn solve_2(input: Vec<String>) {}
 
 fn main() {
-    let input: Vec<String> = fs::read_to_string("input.txt")
+    let input: Vec<_> = fs::read_to_string("input.txt")
         .unwrap()
         .split_terminator('\n')
         .map(|x| x.to_string())
