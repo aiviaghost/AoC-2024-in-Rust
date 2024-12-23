@@ -133,6 +133,19 @@ fn solve_rec(instructions: &Vec<usize>, idx: usize, reg_a: usize) -> Option<usiz
     None
 }
 
+/*
+Decompiled program:
+
+while A != 0:
+    B = A % 8
+    B = B ^ 5
+    C = A >> B
+    B = B ^ 6
+    A = A >> 3
+    B = B ^ C
+    print(B % 8)
+*/
+
 fn solve_2(input: Vec<String>) {
     let mut input = input.split(|line| line.is_empty());
     let mut regs = input
