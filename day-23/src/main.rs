@@ -22,7 +22,7 @@ fn solve_1(input: Vec<String>) {
             let curr_dist = *dist.get(curr).unwrap();
             for next in adj.get(curr).unwrap() {
                 if !dist.contains_key(next) {
-                    if curr_dist < 3 {
+                    if curr_dist + 1 <= 2 {
                         dist.insert(next, curr_dist + 1);
                         q.push_back((next, curr_is_valid || next.starts_with("t")));
                     }
